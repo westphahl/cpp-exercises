@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdlib.h>
 
 #include "media_types.h"
 
@@ -16,8 +17,10 @@ int main()
             << "e: borrow last media" << std::endl
             << "r: return media" << std::endl
             << "q: quit" << std::endl
+            << std::endl
             << "Command: ";
     std::cin >> command;
+    std::cout << std::endl;
     
     switch (command) {
       case 'm':
@@ -33,15 +36,20 @@ int main()
       case 'e':
         if (medium != NULL) {
           medium->lendOut();
+        } else {
+          std::cout << "Please enter medium first!" << std::endl;
         }
         break;
       case 'r':
         if (medium != NULL) {
           medium->handIn();
+        } else {
+          std::cout << "Please enter medium first!" << std::endl;
         }
         break;
       case 'q':
-        exit(0);
+        exit(EXIT_SUCCESS);
     }
+    std::cout << std::endl;
   }
 }

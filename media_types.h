@@ -4,6 +4,8 @@
 #include <string>
 
 
+const int columnWidth = 15;
+
 class Medium
 {
   public:

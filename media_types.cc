@@ -1,12 +1,13 @@
 #include <string>
 #include <iostream>
+#include <iomanip>
 
 #include "media_types.h"
 
 
 Medium::Medium()
 {
-  title_ = "Medium";
+  type_ = "Medium";
   signature_ = readSignature();
   title_ = readTitle();
   status_ = true;
@@ -39,7 +40,6 @@ void Medium::lendOut()
 {
   if (status_ == true) {
     status_ = false;
-    std::cout << "Thank your for returning this media!" << std::endl;
   } else {
     std::cout << "Sorry, medium not available!" << std::endl;
   }
@@ -49,6 +49,7 @@ void Medium::handIn()
 {
   if (status_ == false) {
     status_ = true;
+    std::cout << "Thank your for returning this media!" << std::endl;
   } else {
     std::cout << "You already returned this media." << std::endl;
   }
@@ -56,5 +57,15 @@ void Medium::handIn()
 
 void Medium::print()
 {
-  std::cout << "print media" << std::endl;
+  std::cout << std::left
+            << std::setw(columnWidth) << "Signature"
+            << std::setw(columnWidth) << "Type"
+            << std::setw(columnWidth) << "Title"
+            << std::setw(columnWidth) << "Available" << std::endl;
+  std::cout << std::left
+            << std::setw(columnWidth) << signature_
+            << std::setw(columnWidth) << type_
+            << std::setw(columnWidth) << title_
+            << std::setw(columnWidth) << std::boolalpha 
+            << status_ << std::endl;
 }
