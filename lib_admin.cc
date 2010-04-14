@@ -3,6 +3,7 @@
 
 #include "media_types.h"
 
+using namespace std;
 
 int main()
 {
@@ -11,25 +12,25 @@ int main()
   command = 'q';
 
   while (true) {
-    std::cout << "What do you want to do?" << std::endl
-            << "m: new medium" << std::endl
-            << "l: list media" << std::endl
-            << "e: borrow last media" << std::endl
-            << "r: return media" << std::endl
-            << "q: quit" << std::endl
-            << std::endl
+    cout << "What do you want to do?" << endl
+            << "m: new medium" << endl
+            << "l: list media" << endl
+            << "e: borrow last media" << endl
+            << "r: return media" << endl
+            << "q: quit" << endl
+            << endl
             << "Command: ";
-    std::cin >> command;
-    std::cout << std::endl;
+    cin >> command;
+    cout << endl;
     
     switch (command) {
       case 'm':
-        std::cout << "Please enter media information!" << std::endl;
+        cout << "Please enter media information!" << endl;
         medium = new Medium();
         break;
       case 'l':
         if (medium != NULL) {
-          std::cout << "Media" << std::endl;
+          cout << "Media" << endl;
           medium->print();
         }
         break;
@@ -37,19 +38,19 @@ int main()
         if (medium != NULL) {
           medium->lendOut();
         } else {
-          std::cout << "Please enter medium first!" << std::endl;
+          cout << "Please enter medium first!" << endl;
         }
         break;
       case 'r':
         if (medium != NULL) {
           medium->handIn();
         } else {
-          std::cout << "Please enter medium first!" << std::endl;
+          cout << "Please enter medium first!" << endl;
         }
         break;
       case 'q':
         exit(EXIT_SUCCESS);
     }
-    std::cout << std::endl;
+    cout << endl;
   }
 }
