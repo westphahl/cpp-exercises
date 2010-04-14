@@ -2,9 +2,10 @@
 #define MEDIA_TYPES_H
 
 #include <string>
+#include <iostream>
 
 
-const int columnWidth = 15;
+const int columnWidth = 10;
 
 class Medium
 {
