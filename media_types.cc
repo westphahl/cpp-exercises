@@ -4,6 +4,7 @@
 
 #include "media_types.h"
 
+using namespace std;
 
 Medium::Medium()
 {
@@ -22,17 +23,22 @@ int Medium::readSignature()
 {
   int signature = 0;
 
-  std::cout << "Signature: ";
-  std::cin >> signature;
+  cout << "Signature: ";
+  while (!(cin >> signature)) {
+    cin.clear();
+    cin.ignore(999, '\n');
+    cerr << "Error: Please enter only integers." << endl;
+  }
   return signature;
 }
 
-std::string Medium::readTitle()
+string Medium::readTitle()
 {
-  std::string title = "";
+  string title = "";
   
-  std::cout << "Title: ";
-  std::cin >> title;
+  cin.ignore();
+  cout << "Title: ";
+  getline(cin, title);
   return title;
 }
 
@@ -41,7 +47,7 @@ void Medium::lendOut()
   if (status_ == true) {
     status_ = false;
   } else {
-    std::cout << "Sorry, medium not available!" << std::endl;
+    cout << "Sorry, medium not available!" << endl;
   }
 }
 
@@ -49,23 +55,23 @@ void Medium::handIn()
 {
   if (status_ == false) {
     status_ = true;
-    std::cout << "Thank your for returning this media!" << std::endl;
+    cout << "Thank your for returning this media!" << endl;
   } else {
-    std::cout << "You already returned this media." << std::endl;
+    cout << "You already returned this media." << endl;
   }
 }
 
 void Medium::print()
 {
-  std::cout << std::left
-            << std::setw(columnWidth) << "Signature"
-            << std::setw(columnWidth) << "Type"
-            << std::setw(columnWidth) << "Title"
-            << std::setw(columnWidth) << "Available" << std::endl;
-  std::cout << std::left
-            << std::setw(columnWidth) << signature_
-            << std::setw(columnWidth) << type_
-            << std::setw(columnWidth) << title_
-            << std::setw(columnWidth) << std::boolalpha 
-            << status_ << std::endl;
+  cout << left
+       << setw(columnWidth * 1.5) << "Signature"
+       << setw(columnWidth) << "Type"
+       << std::setw(columnWidth * 3) << "Title"
+       << setw(columnWidth) << "Available" << endl;
+  cout << left
+       << setw(columnWidth * 1.5) << signature_
+       << setw(columnWidth) << type_
+       << setw(columnWidth * 3) << title_
+       << setw(columnWidth) << boolalpha 
+       << status_ << endl;
 }
