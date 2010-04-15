@@ -24,7 +24,7 @@ int main()
 {
   char command = 'q';
   Medium* media[arraySize];
-  
+  int signature = 0;
   // Initialize array with NULL values
   int i;
   for (i = 0; i < arraySize; i++) {
@@ -66,18 +66,20 @@ int main()
         }
         break;
       case 'e':
-        //if (medium != NULL) {
-        //  medium->lendOut();
-        //} else {
-        //  cout << "Please enter medium first!" << endl;
-        //}
+        cin >> signature;
+        for (i = 0; (i < arraySize) && (media[i] != NULL); i++) {
+          if (media[i]->getSignature() == signature) {
+            media[i]->lendOut();
+          }
+        }
         break;
       case 'r':
-        //if (medium != NULL) {
-        //  medium->handIn();
-        //} else {
-        //  cout << "Please enter medium first!" << endl;
-        //}
+        cin >> signature;
+        for (i = 0; (i < arraySize) && (media[i] != NULL); i++) {
+          if (media[i]->getSignature() == signature) {
+            media[i]->handIn();
+          }
+        }
         break;
       case 'q':
         exit(EXIT_SUCCESS);

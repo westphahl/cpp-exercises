@@ -27,6 +27,11 @@ int Medium::readSignature()
   return signature;
 }
 
+int Medium::getSignature()
+{
+  return signature_;
+}
+
 string Medium::readTitle()
 {
   string title = "";

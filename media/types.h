@@ -19,6 +19,7 @@ class Medium
     virtual ~Medium() {};
     void lendOut();
     void handIn();
+    int getSignature();
   protected:
     int signature_;
     std::string type_;
