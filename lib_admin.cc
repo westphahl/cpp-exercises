@@ -1,7 +1,7 @@
 #include <iostream>
 #include <stdlib.h>
 
-#include "media_types.h"
+#include "media/types.h"
 
 using namespace std;
 

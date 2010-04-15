@@ -2,7 +2,7 @@
 #include <iostream>
 #include <iomanip>
 
-#include "media_types.h"
+#include "types.h"
 
 using namespace std;
 
