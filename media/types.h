@@ -4,13 +4,14 @@
 #include <string>
 #include <iostream>
 
-
 const int columnWidth = 10;
+
 
 class Medium
 {
   public:
     Medium();
+    Medium(int i) {};
     std::string getType();
     std::string getTitle();
     bool isAvailable();
@@ -18,17 +19,16 @@ class Medium
     virtual ~Medium() {};
     void lendOut();
     void handIn();
-  private:
+  protected:
     int signature_;
     std::string type_;
     std::string title_;
     bool status_;
-    int getSignature();
     int readSignature();
     std::string readTitle();
 };
 
-/*
+
 class Book: public Medium
 {
   public:
@@ -47,8 +47,7 @@ class Video: public Medium
     void print();
   private:
     float length_;
-    int readLength();
+    float readLength();
 };
-*/
 
 #endif

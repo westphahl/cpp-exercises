@@ -1,4 +1,3 @@
-#include <string>
 #include <iostream>
 #include <iomanip>
 
@@ -8,15 +7,11 @@ using namespace std;
 
 Medium::Medium()
 {
+  cout << "Please enter info for medium: signature and title" << endl;
   type_ = "Medium";
+  status_ = true;
   signature_ = readSignature();
   title_ = readTitle();
-  status_ = true;
-}
-
-int Medium::getSignature()
-{
-  return signature_;
 }
 
 int Medium::readSignature()
@@ -63,15 +58,12 @@ void Medium::handIn()
 
 void Medium::print()
 {
-  cout << left
-       << setw(columnWidth * 1.5) << "Signature"
-       << setw(columnWidth) << "Type"
-       << std::setw(columnWidth * 3) << "Title"
-       << setw(columnWidth) << "Available" << endl;
-  cout << left
-       << setw(columnWidth * 1.5) << signature_
+  cout << right
+       << setw(columnWidth * 0.8) << signature_
+       << setw(columnWidth * 0.5) << " "
+       << left
        << setw(columnWidth) << type_
-       << setw(columnWidth * 3) << title_
+       << setw(columnWidth * 2.5) << title_
        << setw(columnWidth) << boolalpha 
        << status_ << endl;
 }
