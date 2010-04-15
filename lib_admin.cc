@@ -16,7 +16,7 @@ void addMedia(Medium* medium, Medium* media[], int arraySize) {
     }
   }
   if (i == arraySize) {
-    cerr << "Exeeded array size of " << arraySize << "Elements!" << endl;
+    cerr << "Error: Exeeded array size of " << arraySize << " elements!" << endl;
   }
 }
 
@@ -85,5 +85,10 @@ int main()
         exit(EXIT_SUCCESS);
     }
     cout << endl;
+  }
+
+  // Garbage collection
+  for (i = 0; (i < arraySize) && (media[i] != NULL); i++) {
+    delete media[i];
   }
 }
