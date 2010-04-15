@@ -16,7 +16,8 @@ void addMedia(Medium* medium, Medium* media[], int arraySize) {
     }
   }
   if (i == arraySize) {
-    cerr << "Error: Exeeded array size of " << arraySize << " elements!" << endl;
+    cerr << "Error: Exeeded array size of " << arraySize
+         << " elements!" << endl;
   }
 }
 
