@@ -7,6 +7,10 @@ using namespace std;
 
 const int arraySize = 50;
 
+/*
+ * Function for inserting a new medium (Medium, Video, Book, ...)
+ * to an array of Medium pointers.
+ */
 void addMedia(Medium* medium, Medium* media[], int arraySize) {
   int i;
   for (i = 0; i < arraySize; i++) {
@@ -34,15 +38,15 @@ int main()
 
   while (true) {
     cout << "What do you want to do?" << endl
-            << "m: new medium" << endl
-            << "b: new book" << endl
-            << "v: new video" << endl
-            << "l: list media" << endl
-            << "e SIGNATURE: borrow media" << endl
-            << "r SIGNATURE: return media" << endl
-            << "q: quit" << endl
-            << endl
-            << "Command: ";
+         << "m: new medium" << endl
+         << "b: new book" << endl
+         << "v: new video" << endl
+         << "l: list media" << endl
+         << "e SIGNATURE: borrow media" << endl
+         << "r SIGNATURE: return media" << endl
+         << "q: quit" << endl
+         << endl
+         << "Command: ";
     cin >> command;
     cout << endl;
     
@@ -88,7 +92,7 @@ int main()
     cout << endl;
   }
 
-  // Garbage collection
+  // Clean up
   for (i = 0; (i < arraySize) && (media[i] != NULL); i++) {
     delete media[i];
   }
