@@ -37,7 +37,11 @@ void Book::print()
        << left
        << setw(columnWidth) << type_
        << setw(columnWidth * 2.5) << title_
-       << setw(columnWidth) << boolalpha
-       << setw(columnWidth) << status_ 
-       << "Pages " << pages_ << endl;
+       << setw(columnWidth) << boolalpha;
+  if (status_ == true) {
+    cout << setw(columnWidth) << "avail.";
+  } else {
+    cout << setw(columnWidth) << "unavail.";
+  }
+  cout << "Pages " << pages_ << endl;
 }

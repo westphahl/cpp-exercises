@@ -37,7 +37,11 @@ void Video::print()
        << left
        << setw(columnWidth) << type_
        << setw(columnWidth * 2.5) << title_
-       << setw(columnWidth) << boolalpha
-       << setw(columnWidth) << status_ 
-       << "Length " << length_ << " min" << endl;
+       << setw(columnWidth) << boolalpha;
+  if (status_ == true) {
+    cout << setw(columnWidth) << "avail.";
+  } else {
+    cout << setw(columnWidth) << "unavail.";
+  }
+  cout << "Length " << length_ << " min" << endl;
 }

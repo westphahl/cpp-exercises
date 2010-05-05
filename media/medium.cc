@@ -69,6 +69,10 @@ void Medium::print()
        << left
        << setw(columnWidth) << type_
        << setw(columnWidth * 2.5) << title_
-       << setw(columnWidth) << boolalpha 
-       << status_ << endl;
+       << setw(columnWidth) << boolalpha;
+  if (status_ == true) {
+    cout << setw(columnWidth) << "avail." << endl;
+  } else {
+    cout << setw(columnWidth) << "unavail." << endl;
+  }
 }
