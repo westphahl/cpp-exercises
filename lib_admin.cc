@@ -38,12 +38,12 @@ int main()
 
   while (true) {
     cout << "What do you want to do?" << endl
-         << "m: new medium" << endl
-         << "b: new book" << endl
-         << "v: new video" << endl
-         << "l: list media" << endl
-         << "e SIGNATURE: borrow media" << endl
-         << "r SIGNATURE: return media" << endl
+         << "m: create new medium" << endl
+         << "b: create new book" << endl
+         << "v: create new video" << endl
+         << "l: list all media" << endl
+         << "e SIGNATURE: borrow media with the given signature" << endl
+         << "r SIGNATURE: return media with the given signature" << endl
          << "q: quit" << endl
          << endl
          << "Command: ";
