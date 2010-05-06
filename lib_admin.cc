@@ -87,13 +87,12 @@ int main()
         }
         break;
       case 'q':
+        // Clean up
+        for (i = 0; (i < arraySize) && (media[i] != NULL); i++) {
+          delete media[i];
+        }
         exit(EXIT_SUCCESS);
     }
     cout << endl;
-  }
-
-  // Clean up
-  for (i = 0; (i < arraySize) && (media[i] != NULL); i++) {
-    delete media[i];
   }
 }
