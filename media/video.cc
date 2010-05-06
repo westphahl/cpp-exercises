@@ -43,5 +43,5 @@ void Video::print()
   } else {
     cout << setw(columnWidth) << "unavail.";
   }
-  cout << "Length " << length_ << " min" << endl;
+  cout << "Length " << setprecision(2) << fixed << length_ << " min" << endl;
 }
