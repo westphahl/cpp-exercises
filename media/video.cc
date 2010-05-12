@@ -23,7 +23,7 @@ float Video::readLength()
   cout << "Length: ";
   while (!(cin >> length)) {
     cin.clear();
-    cin.ignore(999, '\n');
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     cerr << "Error: Please enter only float values." << endl;
   }
   return length;

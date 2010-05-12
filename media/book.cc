@@ -23,7 +23,7 @@ int Book::readPages()
   cout << "Pages: ";
   while (!(cin >> pages)) {
     cin.clear();
-    cin.ignore(999, '\n');
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     cerr << "Error: Please enter only integers." << endl;
   }
   return pages;

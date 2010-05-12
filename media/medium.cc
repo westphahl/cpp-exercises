@@ -1,5 +1,6 @@
 #include <iostream>
 #include <iomanip>
+#include <limits>
 
 #include "types.h"
 
@@ -21,7 +22,7 @@ int Medium::readSignature()
   cout << "Signature: ";
   while (!(cin >> signature)) {
     cin.clear();
-    cin.ignore(999, '\n');
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     cerr << "Error: Please enter only integers." << endl;
   }
   return signature;
