@@ -28,13 +28,8 @@ void addMedia(Medium* medium, Medium* media[], int arraySize) {
 int main()
 {
   char command = 'q';
-  Medium* media[arraySize];
+  Medium* media[arraySize] = {NULL};
   int signature = 0;
-  // Initialize array with NULL values
-  int i;
-  for (i = 0; i < arraySize; i++) {
-    media[i] = NULL;
-  }
 
   while (true) {
     cout << "What do you want to do?" << endl
