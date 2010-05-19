@@ -1,34 +1,17 @@
 #include <iostream>
 #include <stdlib.h>
 
+#include "utils/utils.h"
 #include "media/types.h"
 
 using namespace std;
 
-const int arraySize = 50;
-
-/*
- * Function for inserting a new medium (Medium, Video, Book, ...)
- * to an array of Medium pointers.
- */
-void addMedia(Medium* medium, Medium* media[], int arraySize) {
-  int i;
-  for (i = 0; i < arraySize; i++) {
-    if (media[i] == NULL) {
-      media[i] = medium;
-      break;
-    }
-  }
-  if (i == arraySize) {
-    cerr << "Error: Exeeded array size of " << arraySize
-         << " elements!" << endl;
-  }
-}
 
 int main()
 {
   char command = 'q';
-  Medium* media[arraySize] = {NULL};
+  Container media_c = Container();
+  Medium* media = NULL;
   int signature = 0;
 
   while (true) {
@@ -39,6 +22,7 @@ int main()
          << "l: list all media" << endl
          << "e SIGNATURE: borrow media with the given signature" << endl
          << "r SIGNATURE: return media with the given signature" << endl
+         << "d SIGNATURE: delete media with the given signature" << endl
          << "q: quit" << endl
          << endl
          << "Command: ";
@@ -47,44 +31,57 @@ int main()
     
     switch (command) {
       case 'm':
-        addMedia(new Medium(), media, arraySize);
+        media_c.add(new Medium());
         break;
       case 'b':
-        addMedia(new Book(), media, arraySize);
+        media_c.add(new Book());
         break;
       case 'v':
-        addMedia(new Video(), media, arraySize);
+        media_c.add(new Video());
         break;
       case 'l':
         cout << "Media Library" << endl;
-        int i;
-        for (i = 0; i < arraySize; i++) {
-          if (media[i] == NULL) {
-            break;
-          }
-          media[i]->print();
+        media_c.begin();
+        while ((media = media_c.getItem()) != NULL) {
+          media->print();
+          media_c.next();
         }
         break;
       case 'e':
         cin >> signature;
-        for (i = 0; (i < arraySize) && (media[i] != NULL); i++) {
-          if (media[i]->getSignature() == signature) {
-            media[i]->lendOut();
+        media_c.begin();
+        while ((media = media_c.getItem()) != NULL) {
+          if (media->getSignature() == signature) {
+            media->lendOut();
           }
+          media_c.next();
         }
         break;
       case 'r':
         cin >> signature;
-        for (i = 0; (i < arraySize) && (media[i] != NULL); i++) {
-          if (media[i]->getSignature() == signature) {
-            media[i]->handIn();
+        media_c.begin();
+        while ((media = media_c.getItem()) != NULL) {
+          if (media->getSignature() == signature) {
+            media->handIn();
           }
+          media_c.next();
+        }
+        break;
+      case 'd':
+        cin >> signature;
+        media_c.begin();
+        while((media = media_c.getItem()) != NULL) {
+          if (media->getSignature() == signature) {
+            media_c.remove();
+          }
+          media_c.next();
         }
         break;
       case 'q':
-        // Clean up
-        for (i = 0; (i < arraySize) && (media[i] != NULL); i++) {
-          delete media[i];
+        media_c.begin();
+        while ((media_c.getItem()) != NULL) {
+            media_c.remove();
+            media_c.next();
         }
         exit(EXIT_SUCCESS);
     }
