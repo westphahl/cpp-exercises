@@ -1,4 +1,8 @@
+#include <new>
+
 #include "utils.h"
+
+using namespace std;
 
 Container::Container()
 {
@@ -9,14 +13,19 @@ Container::Container()
 
 bool Container::add(ITEM* newItem)
 {
-  C_ELEMENT* newElement = new C_ELEMENT;
+  // Instead of throwing bad_alloc return a NULL pointer
+  C_ELEMENT* newElement = new (nothrow) C_ELEMENT;
+  if (newElement == NULL) {
+    return false;
+  }
+
   if (tail_ != NULL) {
     tail_->next = newElement;
   } else {
     head_ = newElement;
   }
   newElement->item = newItem;
-  newElement->last = tail_;
+  newElement->previous = tail_;
   newElement->next = NULL;
   tail_ = newElement;
   return true;
@@ -24,14 +33,16 @@ bool Container::add(ITEM* newItem)
 
 bool Container::remove()
 {
+  if (current_ == NULL) return false;
+  
   C_ELEMENT* oldElement = current_;
   current_ = oldElement->next;
   if (current_ != NULL) {
-    current_->last = oldElement->last;
+    current_->previous = oldElement->previous;
   } else {
-    tail_ = oldElement->last;
+    tail_ = oldElement->previous;
   }
-  current_ = oldElement->last;
+  current_ = oldElement->previous;
   if (current_ != NULL) {
     current_->next = oldElement->next;
   } else {
@@ -39,6 +50,7 @@ bool Container::remove()
   }
   delete oldElement->item;
   delete oldElement;
+
   return true;
 }
 
