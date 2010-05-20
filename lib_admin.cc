@@ -41,48 +41,44 @@ int main()
         break;
       case 'l':
         cout << "Media Library" << endl;
-        media_c.begin();
-        while ((media = media_c.getItem()) != NULL) {
-          media->print();
-          media_c.next();
-        }
+        for (media_c.begin();
+            (media = media_c.getItem()) != NULL;
+             media_c.next()) media->print();
         break;
       case 'e':
         cin >> signature;
-        media_c.begin();
-        while ((media = media_c.getItem()) != NULL) {
+        for (media_c.begin();
+            (media = media_c.getItem()) != NULL;
+             media_c.next()) {
           if (media->getSignature() == signature) {
             media->lendOut();
           }
-          media_c.next();
         }
         break;
       case 'r':
         cin >> signature;
-        media_c.begin();
-        while ((media = media_c.getItem()) != NULL) {
+        for (media_c.begin();
+            (media = media_c.getItem()) != NULL;
+             media_c.next()) {
           if (media->getSignature() == signature) {
             media->handIn();
           }
-          media_c.next();
         }
         break;
       case 'd':
         cin >> signature;
-        media_c.begin();
-        while((media = media_c.getItem()) != NULL) {
+        for (media_c.begin();
+            (media = media_c.getItem()) != NULL;
+             media_c.next()) {
           if (media->getSignature() == signature) {
             media_c.remove();
           }
-          media_c.next();
         }
         break;
       case 'q':
-        media_c.begin();
-        while ((media_c.getItem()) != NULL) {
-            media_c.remove();
-            media_c.next();
-        }
+        for (media_c.begin();
+            (media = media_c.getItem()) != NULL;
+             media_c.next()) media_c.remove();
         exit(EXIT_SUCCESS);
     }
     cout << endl;
