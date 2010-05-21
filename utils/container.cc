@@ -33,20 +33,24 @@ bool Container::add(ITEM* newItem)
 
 bool Container::remove()
 {
-  if (current_ == NULL) return false;
-  
   C_ELEMENT* oldElement = current_;
+  if (current_ == NULL) return false;
+   
   current_ = oldElement->next;
+  // Check if old element was tail
   if (current_ != NULL) {
     current_->previous = oldElement->previous;
   } else {
     tail_ = oldElement->previous;
   }
+
   current_ = oldElement->previous;
+  // Check if old element was head
   if (current_ != NULL) {
     current_->next = oldElement->next;
   } else {
     head_ = oldElement->next;
+    begin();
   }
   delete oldElement->item;
   delete oldElement;
