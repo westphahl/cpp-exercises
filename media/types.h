@@ -5,6 +5,7 @@
 #include <iostream>
 
 const int columnWidth = 10;
+const int titleLimit = 20;
 
 
 class Medium

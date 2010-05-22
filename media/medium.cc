@@ -1,6 +1,7 @@
 #include <iostream>
 #include <iomanip>
 #include <limits>
+#include <string>
 
 #include "types.h"
 
@@ -69,7 +70,7 @@ void Medium::print()
        << setw(columnWidth * 0.5) << " "
        << left
        << setw(columnWidth) << type_
-       << setw(columnWidth * 2.5) << title_
+       << setw(columnWidth * 2.5) << title_.substr(0, titleLimit)
        << setw(columnWidth) << boolalpha;
   if (status_ == true) {
     cout << setw(columnWidth) << "avail." << endl;
