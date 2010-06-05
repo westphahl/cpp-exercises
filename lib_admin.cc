@@ -31,13 +31,13 @@ int main()
     
     switch (command) {
       case 'm':
-        media_c.add(new Medium());
+        if (!media_c.add(new Medium())) exit(EXIT_FAILURE);
         break;
       case 'b':
-        media_c.add(new Book());
+        if (!media_c.add(new Book())) exit(EXIT_FAILURE);
         break;
       case 'v':
-        media_c.add(new Video());
+        if (!media_c.add(new Video())) exit(EXIT_FAILURE);
         break;
       case 'l':
         cout << "Media Library" << endl;
@@ -71,7 +71,7 @@ int main()
             (media = media_c.getItem()) != NULL;
              media_c.next()) {
           if (media->getSignature() == signature) {
-            media_c.remove();
+            if (!media_c.remove()) exit(EXIT_FAILURE);
           }
         }
         break;
