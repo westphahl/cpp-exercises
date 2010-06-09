@@ -44,7 +44,7 @@ string Medium::readTitle()
   return title;
 }
 
-void Medium::lendOut()
+void Medium::borrow()
 {
   if (status_ == true) {
     status_ = false;
@@ -53,7 +53,7 @@ void Medium::lendOut()
   }
 }
 
-void Medium::handIn()
+void Medium::handBack()
 {
   if (status_ == false) {
     status_ = true;

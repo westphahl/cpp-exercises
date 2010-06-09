@@ -59,7 +59,7 @@ int main()
             (media = media_c.getItem()) != NULL;
              media_c.next()) {
           if (media->getSignature() == signature) {
-            media->lendOut();
+            media->borrow();
           }
         }
         break;
@@ -69,7 +69,7 @@ int main()
             (media = media_c.getItem()) != NULL;
              media_c.next()) {
           if (media->getSignature() == signature) {
-            media->handIn();
+            media->handBack();
           }
         }
         break;

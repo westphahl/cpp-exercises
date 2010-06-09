@@ -18,8 +18,8 @@ class Medium
     bool isAvailable();
     virtual void print();
     virtual ~Medium() {};
-    void lendOut();
-    void handIn();
+    void borrow();
+    void handBack();
     int getSignature();
   protected:
     int signature_;
