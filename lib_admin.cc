@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include <stdlib.h>
 
 #include "utils/utils.h"
@@ -40,7 +41,14 @@ int main()
         if (!media_c.add(new Video())) exit(EXIT_FAILURE);
         break;
       case 'l':
-        cout << "Media Library" << endl;
+        cout << right
+             << setw(columnWidth * 0.8) << "Signatur"
+             << setw(columnWidth * 0.5) << " "
+             << left
+             << setw(columnWidth) << "Type"
+             << setw(columnWidth * 2.5) << "Title"
+             << setw(columnWidth) << "Status"
+             << setw(columnWidth) << "Furter Information" << endl;
         for (media_c.begin();
             (media = media_c.getItem()) != NULL;
              media_c.next()) media->print();
