@@ -7,11 +7,12 @@
 
 using namespace std;
 
+
 Video::Video() : Medium(0)
 {
-  cout << "Please enter info for video: signature, length and title" << endl;
+  cout << "Please enter info for video: signature, length, title" << endl;
   type_ = "Video";
-  status_ = true;
+  status_ = available;
   signature_ = readSignature();
   length_ = readLength();
   title_ = readTitle();
@@ -33,7 +34,7 @@ float Video::readLength()
 void Video::print()
 {
   cout << right
-       << setw(columnWidth * 0.8) << signature_
+       << setw(columnWidth * 1) << signature_
        << setw(columnWidth * 0.5) << " "
        << left
        << setw(columnWidth) << type_

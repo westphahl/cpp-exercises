@@ -3,16 +3,16 @@
 
 #include "../media/types.h"
 
+
 typedef Medium ITEM;
 
-
-struct c_element
+class c_element
 {
   ITEM* item;
-  struct c_element* previous;
-  struct c_element* next;
+  c_element* previous;
+  c_element* next;
+  friend class Container;
 };
-typedef struct c_element C_ELEMENT;
 
 
 class Container
@@ -25,9 +25,9 @@ class Container
     void next();
     ITEM* getItem();
   protected:
-    C_ELEMENT* head_;
-    C_ELEMENT* tail_;
-    C_ELEMENT* current_;
+    c_element* head_;
+    c_element* tail_;
+    c_element* current_;
 };
 
 #endif

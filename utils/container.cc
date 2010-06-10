@@ -4,6 +4,7 @@
 
 using namespace std;
 
+
 Container::Container()
 {
   head_ = NULL;
@@ -14,7 +15,7 @@ Container::Container()
 bool Container::add(ITEM* newItem)
 {
   // Instead of throwing bad_alloc return a NULL pointer
-  C_ELEMENT* newElement = new (nothrow) C_ELEMENT;
+  c_element* newElement = new (nothrow) c_element;
   if (newElement == NULL) {
     return false;
   }
@@ -33,7 +34,7 @@ bool Container::add(ITEM* newItem)
 
 bool Container::remove()
 {
-  C_ELEMENT* oldElement = current_;
+  c_element* oldElement = current_;
   if (current_ == NULL) return false;
    
   current_ = oldElement->next;
@@ -52,7 +53,6 @@ bool Container::remove()
     head_ = oldElement->next;
     begin();
   }
-  delete oldElement->item;
   delete oldElement;
 
   return true;

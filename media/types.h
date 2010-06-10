@@ -4,8 +4,23 @@
 #include <string>
 #include <iostream>
 
+
 const int columnWidth = 10;
 const int titleLimit = 20;
+enum e_status {
+  unavailable,
+  available,
+};
+
+
+class StatusError
+{
+  public:
+    StatusError(std::string source);
+    std::string message();
+  private:
+    std::string source_;
+};
 
 
 class Medium
@@ -17,6 +32,7 @@ class Medium
     std::string getTitle();
     bool isAvailable();
     virtual void print();
+    static void printTitles();
     virtual ~Medium() {};
     void borrow();
     void handBack();
@@ -25,7 +41,7 @@ class Medium
     int signature_;
     std::string type_;
     std::string title_;
-    bool status_;
+    e_status status_;
     int readSignature();
     std::string readTitle();
 };

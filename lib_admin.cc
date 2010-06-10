@@ -32,58 +32,70 @@ int main()
     
     switch (command) {
       case 'm':
+        // Add medium.
         if (!media_c.add(new Medium())) exit(EXIT_FAILURE);
         break;
       case 'b':
+        // Add book.
         if (!media_c.add(new Book())) exit(EXIT_FAILURE);
         break;
       case 'v':
+        // Add video.
         if (!media_c.add(new Video())) exit(EXIT_FAILURE);
         break;
       case 'l':
-        cout << right
-             << setw(columnWidth * 0.8) << "Signatur"
-             << setw(columnWidth * 0.5) << " "
-             << left
-             << setw(columnWidth) << "Type"
-             << setw(columnWidth * 2.5) << "Title"
-             << setw(columnWidth) << "Status"
-             << setw(columnWidth) << "Furter Information" << endl;
+        // List all media.
+	      Medium::printTitles();
         for (media_c.begin();
             (media = media_c.getItem()) != NULL;
              media_c.next()) media->print();
         break;
       case 'e':
+        // Borrow medium with given signature.
         cin >> signature;
         for (media_c.begin();
             (media = media_c.getItem()) != NULL;
              media_c.next()) {
           if (media->getSignature() == signature) {
-            media->borrow();
+            try {
+              media->borrow();
+            }
+            catch (StatusError e) {
+              cout << e.message() << endl;
+            }
           }
         }
         break;
       case 'r':
+        // Return medium with given signature.
         cin >> signature;
         for (media_c.begin();
             (media = media_c.getItem()) != NULL;
              media_c.next()) {
           if (media->getSignature() == signature) {
-            media->handBack();
+            try {
+              media->handBack();
+            }
+            catch (StatusError e) {
+              cout << e.message() << endl;
+            }
           }
         }
         break;
       case 'd':
+        // Delete medium with given signature.
         cin >> signature;
         for (media_c.begin();
             (media = media_c.getItem()) != NULL;
              media_c.next()) {
           if (media->getSignature() == signature) {
             if (!media_c.remove()) exit(EXIT_FAILURE);
+            delete media;            
           }
         }
         break;
       case 'q':
+        // On exit remove all container elements.
         for (media_c.begin();
             (media = media_c.getItem()) != NULL;
              media_c.next()) media_c.remove();

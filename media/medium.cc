@@ -2,16 +2,29 @@
 #include <iomanip>
 #include <limits>
 #include <string>
-
+#include <sstream>
 #include "types.h"
 
 using namespace std;
+
+
+StatusError::StatusError(string source)
+{
+  source_ = source;
+}
+
+string StatusError::message()
+{
+  ostringstream os;
+  os << "Error on borrowing/returning '" << source_ << "'.";
+  return os.str();
+}
 
 Medium::Medium()
 {
   cout << "Please enter info for medium: signature and title" << endl;
   type_ = "Medium";
-  status_ = true;
+  status_ = available;
   signature_ = readSignature();
   title_ = readTitle();
 }
@@ -46,33 +59,45 @@ string Medium::readTitle()
 
 void Medium::borrow()
 {
-  if (status_ == true) {
-    status_ = false;
+  if (status_ == available) {
+    status_ = unavailable;
   } else {
-    cout << "Sorry, medium not available!" << endl;
+    throw StatusError(title_);
   }
 }
 
 void Medium::handBack()
 {
-  if (status_ == false) {
-    status_ = true;
+  if (status_ == unavailable) {
+    status_ = available;
     cout << "Thank your for returning this media!" << endl;
   } else {
-    cout << "You already returned this media." << endl;
+    throw StatusError(title_);
   }
+}
+
+void Medium::printTitles()
+{
+  cout << right
+       << setw(columnWidth * 1) << "Signature"
+       << setw(columnWidth * 0.5) << " "
+       << left
+       << setw(columnWidth) << "Type"
+       << setw(columnWidth * 2.5) << "Title"
+       << setw(columnWidth) << "Status"
+       << setw(columnWidth) << "Furter Information" << endl;
 }
 
 void Medium::print()
 {
   cout << right
-       << setw(columnWidth * 0.8) << signature_
+       << setw(columnWidth * 1) << signature_
        << setw(columnWidth * 0.5) << " "
        << left
        << setw(columnWidth) << type_
        << setw(columnWidth * 2.5) << title_.substr(0, titleLimit)
        << setw(columnWidth) << boolalpha;
-  if (status_ == true) {
+  if (status_ == available) {
     cout << setw(columnWidth) << "avail." << endl;
   } else {
     cout << setw(columnWidth) << "unavail." << endl;
